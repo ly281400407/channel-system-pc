@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World!</title>
+    <!-- 第一种 -->
+    <!-- <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script>if (typeof module === 'object') {window.jQuery = window.$ = module.exports;};</script> -->
+    <!-- 第二种 -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/jquery.jsonp.js"></script>
+	<script>if (window.module) module = window.module;</script>
+
+	<!-- <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="js/jquery.jsonp.js" />
+	<script>if (window.module) module = window.module;</script>   -->
+	<!-- 第三种模块化 -->
+	<!-- <script>
+		const path = require('path');
+        window.$ = window.jQuery = require(path.join(__dirname, 'js/jquery-3.2.1.js'));
+	</script> -->
+
+
+  </head>
+  <body>
+
+    <div>用户id:<input id="userId"/></div><button id="queryBtn">查询</button>
+    <div id='user' ></div>
+    <div id='password' ></div>
+   <!--  We are using io.js 
+    <script>document.write(process.version)</script>
+    and Electron 
+    <script>document.write(process.versions['electron'])</script>. -->
+
+    <script type="text/javascript">
+	   $(document).ready(function(){ 
+	　　$("#queryBtn").click(function(){ 
+	$.ajax({
+    type:"get",    //请求方式
+    async:true,    //是否异步
+    url:"http://192.168.112.43:8081/user/userInfo",
+    dataType:"jsonp",    //跨域json请求一定是jsonp
+    //jsonp:"callbackone",
+    //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+    data:{userId:$("#userId").val()},    //请求参数
+
+    beforeSend: function() {
+        //请求前的处理
+    },
+
+    success: function(data) {
+        //请求成功处理，和本地回调完全一样
+        $("#user").html("用户名："+data.user);
+        $("#password").html("用户名："+data.password);
+    },
+
+    complete: function() {
+        //请求完成的处理
+    },
+
+    error: function() {
+        //请求出错处理
+    }
+   });
+	
+	  // $.getJSON("http://localhost:8081/user/userInfo2?userId=1&jsoncallback=?",function(data){
+	  // 	alert(data.user);
+	  // }); 
+
+	//   var url="http://localhost:8081/user/userInfo"+"?userId=1&callback=?";
+	// $.jsonp({
+	//   "url": url,
+	//   "success": function(data) {
+	//     alert(data.user);
+	//   },
+	//   "error": function(d,msg) {
+	//     alert("Could not find user "+msg);
+	//   }
+	// });
+
+      }); 
+	  }); 
+    </script>
+  </body>
+</html>
