@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      const {ipcRenderer} = require('electron')
+      var updateOnlineStatus = function() {
+        ipcRenderer.send('online-status-changed', navigator.onLine ? 'online' : 'offline');
+      };
+      // var alertOnlineStatus = function() {
+      //   window.alert(navigator.onLine ? 'online' : 'offline');
+      // };
+      ipcRenderer.on('result', (event, result) => {
+        window.alert(result);
+      });
+      
+      console.log(ipcRenderer.sendSync('synchronous-message', 'ping'));
+
+      window.addEventListener('online',  updateOnlineStatus);
+      window.addEventListener('offline',  updateOnlineStatus);
+
+      //alertOnlineStatus();
+      updateOnlineStatus();
+    </script>
+  </body>
+</html>

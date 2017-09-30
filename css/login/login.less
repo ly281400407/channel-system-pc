@@ -1,0 +1,200 @@
+@import "../public/public";
+
+//私有样式
+@container-width:    722px;
+@container-height:   512px;
+@container-in-width: 360px;
+@input-width:        220px;
+
+
+//文本颜色
+@text-dark-gray:     #333;
+@text-base-gray:     #666;
+@text-light-gray:    #999999;
+@text-yellow:        #f39221;
+@placeholder:        #b5b5b5;
+
+
+//按钮
+@btn-width:220px;
+@btn-height:38px;
+@btn-raduis:20px;
+
+
+
+//字体大小
+@large-font-size:    26px;
+@medium-font-size:   18px;
+@small-font-size:    12px;
+
+
+//背景色
+@background-yellow:  #ffb823;
+@sign-background-hover:#f49628;
+
+
+//边框色
+@input-border:       #d8d8d8;
+
+
+//混合
+.right-mix() {
+  text-align: center;
+  float: right;
+  width: @container-in-width;
+}
+
+
+//登录注册
+.container {
+  border: 1px solid #ccc;
+  color: @text-dark-gray;
+  width: @container-width;
+  height: @container-height;
+  margin: 0 auto;
+  .right {
+    .right-mix;
+  }
+;
+  .banner {
+    width: @container-in-width;
+    height: @container-height - 2;
+  }
+  .we_login {
+    font-size: @large-font-size;
+    margin: 35px 0;
+  }
+  .scan {
+    margin: 14px auto;
+    width: 300px;
+    height: 52px;
+    border-radius: 50px;
+    background: #f7f8fa;
+    text-align: center;
+    padding: 10px;
+    span {
+      line-height: 14px;
+      width: 168px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+  .more {
+    color: @text-light-gray;
+    line-height: 18px;
+    b {
+      display: inline-block;
+      width: 98px;
+      height: 1px;
+      background-color: #d8d8d8;
+      vertical-align: middle;
+      margin: -3px 4px 0;
+    }
+  }
+  .cut {
+    a {
+      display: inline-block;
+      width: 25%;
+      margin: 24px 22px 0;
+      &:hover {
+        color: #f49628;
+      }
+    }
+    img, span {
+      display: block;
+      margin: 0 auto;
+    }
+    img {
+      width: 54px;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.account {
+  .right-mix;
+  .logo {
+    width: 100%;
+    height: 280px;
+    font-size: @medium-font-size;
+    padding-top: 93px;
+    img, span {
+      display: block;
+      margin: 0 auto;
+    }
+    img {
+      margin-bottom: 14px;
+    }
+  }
+
+  .user, .pwd {
+    width: @input-width;
+    border: transparent;
+    border-bottom: 1px solid @input-border;
+    margin-bottom: 20px;
+    height: 22px;
+    padding-bottom: 4px;
+    color: @text-dark-gray;
+  }
+  .pwd {
+    margin-bottom: 9px;
+  }
+  ::-webkit-input-placeholder {
+    color: @placeholder;
+  }
+  :-moz-placeholder {
+    color: @placeholder;
+  }
+  :-ms-input-placeholder {
+    color: @placeholder;
+  }
+  .pwd-controll {
+    width: @input-width;
+    margin: 0 auto 35px;
+    text-align: left;
+    span {
+      font-size: @small-font-size;
+      color: @text-base-gray;
+      b {
+        cursor: pointer;
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+        margin-top: -2px;
+        background: #d8d8d8;
+        &.active {
+          background: @text-yellow;
+        }
+      }
+    }
+  }
+  .login {
+    display: block;
+    width: @btn-width;
+    height: @btn-height;
+    border-radius: @btn-raduis;
+    background-color: @background-yellow;
+    color: #fff;
+    font-size: @medium-font-size;
+    line-height: @btn-height;
+    margin: 0 auto;
+    &:hover {
+      background: @sign-background-hover;
+    }
+  }
+  .cut-ac {
+    color: #f18506;
+    margin-top: 12px;
+    b {
+      display: inline-block;
+      width: 1px;
+      height: 10px;
+      background: #f18506;
+      margin: 0 10px;
+    }
+  }
+}
+

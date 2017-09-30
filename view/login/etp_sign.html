@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>员工登录</title>
+    <script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+    </script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <link rel="stylesheet" href="../../css/login/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <ul class="right">
+            <li class="we_login">微信登录</li>
+            <li>
+                <img src="../../img/QR_code.png">
+            </li>
+            <li class="scan">
+                <span>请用微信扫描二维码登录</span>
+                <span>“悦商云”</span>
+            </li>
+            <li class="more">
+                <b></b> 更多登录方式
+                <b></b>
+            </li>
+            <li class="cut">
+                <a id="acc">
+                <img src="../../img/login_icon.png">
+                <span>帐号密码登录</span>
+            </a>
+                <a class="regis">
+                <img src="../../img/sign_icon.png">
+                <span>立即注册</span>
+            </a>
+            </li>
+        </ul>
+        <ul class="account  hidden">
+            <li class="logo">
+                <img src="../../img/logo.png">
+                <span>企业登录</span>
+            </li>
+            <li>
+                <input autocomplete="off" class="user" placeholder="账号">
+                <input autocomplete="off" class="pwd" placeholder="密码">
+            </li>
+            <li class="pwd-controll">
+                <span class="float-right">
+                <a>忘记密码</a>
+            </span>
+                <span><b class="radius"></b><input type="checkbox" class="hidden">记住密码</span>
+            </li>
+            <li>
+                <a class="login">登 录</a>
+            </li>
+            <li class="cut-ac">
+                <a id="qr_code">二维码登录</a>
+                <b></b>
+                <a class="regis">立即注册</a>
+            </li>
+        </ul>
+        <img src="../../img/big_banner.png" class="banner">
+    </div>
+    
+    <script src="../../js/login.js"></script>
+</body>
+
+</html>

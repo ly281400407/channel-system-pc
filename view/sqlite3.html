@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+		if (typeof module === 'object') { window.module = module; module = undefined; }
+	</script>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		if (window.module) module = window.module;
+	</script>
+</head>
+
+<body>
+	<div>
+		<div>
+			<h2>本地存储</h2>
+		</div>
+
+	</div>
+	<div>用户id:<input id="userId" /></div>
+	<div>用户名:<input id='user' /></div>
+	<div>用户密码:<input id='password' type="password" /></div>
+	<button id="saveBtn">保存</button>
+
+	<div>用户id:<input id="queryUserId" /></div>
+	<div>用户名:<span id='queryUser'></span></div>
+	<div>用户密码:<span id='queryPassword'></span></div>
+	<button id="queryLocalBtn">本地查询</button>
+	<button id="queryRemoteBtn">远端查询</button>
+	<button id="print-pdf">打印</button>
+	<!--  We are using io.js 
+    <script>document.write(process.version)</script>
+    and Electron 
+    <script>document.write(process.versions['electron'])</script>. -->
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#saveBtn").click(function () {
+				var userId = $("#userId").val();
+				var user = $("#user").val();
+				var password = $("#password").val();
+				saveUserInLocalDB(userId, user, password);
+			});
+			$("#queryLocalBtn").click(function () {
+				var userId = $("#queryUserId").val();
+				queryUserInLocalDB(userId);
+			});
+			$("#queryRemoteBtn").click(function () {
+				var userId = $("#queryUserId").val();
+				querUserByRemote(userId);
+			});
+		});
+
+		function saveUserByRemote(id, user, password) {
+			$.ajax({
+				type: "get",    //请求方式
+				async: true,    //是否异步
+				url: "http://192.168.112.43:8081/user/saveUser",
+				dataType: "jsonp",    //跨域json请求一定是jsonp
+				//jsonp:"callbackone",
+				//jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+				data: {
+					userId: id,
+					user: user,
+					password: password
+				},    //请求参数
+				beforeSend: function () {
+					//请求前的处理
+				},
+				success: function (data) {
+					//请求成功处理，和本地回调完全一样
+					console.log("save Remote db successly");
+				},
+				complete: function () {
+					//请求完成的处理
+				},
+				error: function () {
+					//请求出错处理
+				}
+			});
+		}
+
+		function saveUserInLocalDB(id, user, password) {
+			var sqlite3 = require('sqlite3').verbose();
+			var db = new sqlite3.Database(process.cwd() + '/mydb.db');
+			db.serialize(function () {
+				db.run("create table if not exists user(id INTERGER,user TEXT,password TEXT)");
+				db.run("BEGIN TRANSACTION");
+				var stmt = db.prepare("INSERT INTO user(id,user,password) VALUES (?,?,?)");
+				stmt.run(id, user, password);
+				stmt.finalize();
+				db.run("COMMIT TRANSACTION");
+			});
+			db.close();
+			console.log("save local db successly");
+			//本地存储成功上传到远端
+			saveUserByRemote(id, user, password);
+		}
+
+		function queryUserInLocalDB(id) {
+			var sqlite3 = require('sqlite3').verbose();
+			var db = new sqlite3.Database(process.cwd() + '/mydb.db');
+			db.serialize(function () {
+				db.each("SELECT id, user,password FROM user where id = $id ", { $id: id }, function (err, row) {
+					console.log("local id:" + row.id + " user:" + row.user + " password:" + row.password);
+					$("#queryUser").html(row.user);
+					$("#queryPassword").html(row.password);
+				});
+			});
+			db.close();
+			console.log("save local db successly");
+		}
+
+		function querUserByRemote(id) {
+			$.ajax({
+				type: "get",    //请求方式
+				async: true,    //是否异步
+				url: "http://192.168.112.43:8081/user/userInfo",
+				dataType: "jsonp",    //跨域json请求一定是jsonp
+				//jsonp:"callbackone",
+				//jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+				data: {
+					userId: id
+				},    //请求参数
+				beforeSend: function () {
+					//请求前的处理
+				},
+				success: function (data) {
+					if (data.user != null) {
+						$("#queryUser").html(data.user);
+						$("#queryPassword").html(data.password);
+					} else {
+						$("#queryUser").html("");
+						$("#queryPassword").html("");
+					}
+
+				},
+				complete: function () {
+					//请求完成的处理
+				},
+				error: function () {
+					//请求出错处理
+				}
+			});
+		}
+
+		//打印
+		const ipc = require('electron').ipcRenderer
+
+		const printPDFBtn = document.getElementById('print-pdf')
+
+		printPDFBtn.addEventListener('click', function (event) {
+			ipc.send('print-to-pdf')
+		})
+
+		ipc.on('wrote-pdf', function (event, path) {
+			const message = `Wrote PDF to: ${path}`
+			document.getElementById('pdf-path').innerHTML = message
+		})
+	</script>
+
+
+	<!-- <script src="js/sqlite3.js"></script> -->
+</body>
+
+</html>

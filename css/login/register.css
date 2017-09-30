@@ -1,0 +1,319 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em,
+p,
+font,
+img,
+small,
+strong,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+label,
+table,
+caption,
+tbody,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+}
+body {
+  font-family: MicrosoftYaHei,Arial;
+  font-size: 14px;
+  padding: 100px;
+}
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+:focus {
+  outline: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+strong {
+  font-weight: 600;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.clear:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.clear:before {
+  content: "";
+  display: table;
+}
+.hidden {
+  display: none;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.radius {
+  border-radius: 50%;
+}
+.position {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.container {
+  font-size: 22px;
+  border: 1px solid #ccc;
+  color: #333;
+  width: 1202px;
+  height: 782px;
+  margin: 0 auto;
+}
+.container .regt {
+  text-align: center;
+  float: right;
+  width: 600px;
+}
+.container .banner {
+  width: 600px;
+  height: 780px;
+}
+.container .we_login {
+  font-size: 36px;
+  margin: 35px 0;
+}
+.container .scan {
+  margin: 14px auto;
+  width: 300px;
+  height: 52px;
+  border-radius: 50px;
+  background: #f7f8fa;
+  text-align: center;
+  padding: 10px;
+}
+.container .scan span {
+  line-height: 14px;
+  width: 168px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+}
+.container .more {
+  color: #999999;
+  line-height: 18px;
+}
+.container .more b {
+  display: inline-block;
+  width: 98px;
+  height: 1px;
+  background-color: #d8d8d8;
+  vertical-align: middle;
+  margin: -3px 4px 0;
+}
+.container .cut a {
+  display: inline-block;
+  width: 25%;
+  margin: 24px 22px 0;
+}
+.container .cut a:hover {
+  color: #f49628;
+}
+.container .cut img,
+.container .cut span {
+  display: block;
+  margin: 0 auto;
+}
+.container .cut img {
+  width: 54px;
+  margin-bottom: 8px;
+}
+.complate,
+.regt {
+  text-align: center;
+  float: right;
+  width: 600px;
+}
+.complate .logo,
+.regt .logo {
+  width: 100%;
+  height: 280px;
+  font-size: 36px;
+  padding-top: 122px;
+}
+.complate .logo span,
+.regt .logo span {
+  display: block;
+  text-align: left;
+  padding-left: 116px;
+}
+.complate .logo img,
+.regt .logo img {
+  display: block;
+  margin-bottom: 14px;
+}
+.complate .success,
+.regt .success {
+  height: 226px;
+  padding-top: 74px;
+}
+.complate .success span,
+.regt .success span {
+  display: block;
+  text-align: left;
+  margin-left: 118px;
+  width: 400px;
+}
+.complate .success span:nth-child(1),
+.regt .success span:nth-child(1) {
+  color: #f39221;
+  font-size: 36px;
+  margin-bottom: 14px;
+}
+.complate .success span:nth-child(2),
+.regt .success span:nth-child(2) {
+  color: #333;
+  font-size: 22px;
+}
+.complate .user,
+.regt .user,
+.complate .pwd,
+.regt .pwd {
+  width: 360px;
+  border: transparent;
+  border-bottom: 1px solid #d8d8d8;
+  margin-bottom: 36px;
+  height: 44px;
+  padding-bottom: 4px;
+  color: #333;
+  font-size: 22px;
+}
+.complate ::-webkit-input-placeholder,
+.regt ::-webkit-input-placeholder {
+  color: #b5b5b5;
+}
+.complate :-moz-placeholder,
+.regt :-moz-placeholder {
+  color: #b5b5b5;
+}
+.complate :-ms-input-placeholder,
+.regt :-ms-input-placeholder {
+  color: #b5b5b5;
+}
+.complate .pwd-controll,
+.regt .pwd-controll {
+  width: 360px;
+  margin: 0 auto 35px;
+  text-align: left;
+}
+.complate .pwd-controll span,
+.regt .pwd-controll span {
+  font-size: 12px;
+  color: #666;
+}
+.complate .pwd-controll span b,
+.regt .pwd-controll span b {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-top: -2px;
+  background: #d8d8d8;
+}
+.complate .pwd-controll span b.active,
+.regt .pwd-controll span b.active {
+  background: #f39221;
+}
+.complate .login,
+.regt .login {
+  display: block;
+  width: 360px;
+  height: 58px;
+  border-radius: 6px;
+  background-color: #ffb823;
+  color: #fff;
+  line-height: 58px;
+  margin: 34px auto 0;
+}
+.complate .login:hover,
+.regt .login:hover {
+  background: #f49628;
+}
+.complate .cut-ac,
+.regt .cut-ac {
+  color: #f18506;
+  margin-top: 12px;
+}
+.complate .cut-ac b,
+.regt .cut-ac b {
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background: #f18506;
+  margin: 0 10px;
+}
+.getbtn {
+  float: right;
+  width: 74px;
+  height: 34px;
+  border-radius: 3px;
+  border: solid 1px #d8d8d8;
+  color: #b5b5b5;
+  position: absolute;
+  right: 121px;
+}
+.getbtn:hover {
+  background: #f39221;
+  color: #fff;
+  border: none;
+}
+.address {
+  border: 1px solid #b5b5b5;
+  width: 360px;
+  height: 130px;
+}
+.address ul {
+  float: left;
+  width: 33.33333333%;
+  height: 130px;
+  overflow: hidden;
+  font-size: 16px;
+  color: #666;
+  line-height: 26px;
+  padding: 6px 0 0;
+}
+.address ul:nth-child(2) {
+  border-right: 1px solid #b5b5b5;
+  border-left: 1px solid #b5b5b5;
+}
