@@ -1,5 +1,7 @@
 {
-  "name": "悦商云",
+  "name": "LESSOCH",
+  "author": "LESSOCH",
+  "description": "LESSOCH",
   "version": "1.7.6",
   "main": "main.js",
   "build": {
@@ -8,9 +10,23 @@
       "allowToChangeInstallationDirectory": true,
       "runAfterFinish": false
     },
+    "appId": "com.lesso.LESSOCH",
+    "copyright":"LESSO",
+    "productName":"LESSOCH",
+    "dmg":{
+      "background":"",
+      "window":{
+        "x":100,	
+        "y":100,
+        "width":1500,
+        "height":1500
+      }
+    },
     "win": {
-      "target": "nsis"
+        "icon": "res/icon.ico",
+        "target": "nsis"
     }
+    
   },
   "dependencies": {
     "sqlite3": "^3.1.13"

@@ -1,87 +1,182 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>注册</title>
     <script>
-            if (typeof module === 'object') { window.module = module; module = undefined; }
-        </script>
-        <script src="../../js/jquery-3.2.1.js"></script>
-        <script>
-            if (window.module) module = window.module;
-        </script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+    </script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
     <link rel="stylesheet" href="../../css/login/register.css">
 </head>
+
 <body>
-<div class="container">
-    <ul class="regt">
-        <li class="logo">
-            <span>欢迎注册悦商云</span>
-        </li>
-        <li class="position">
-            <input autocomplete="off" class="user" placeholder="请输入账号">
-            <input autocomplete="off" class="pwd" placeholder="请输入密码">
-            <input autocomplete="off" class="pwd" placeholder="手机号码">
-            <input autocomplete="off" class="pwd" placeholder="手机验证码">
-            <a class="getbtn">获取</a>
-        </li>
-        <li>
-            <a class="login" id="register">注&nbsp;册</a>
-        </li>
-    </ul>
-    <ul class="complate hidden">
-        <li class="success">
-            <span>恭喜你！注册成功</span>
-            <span>请完善你的店铺信息，即刻开始收银！</span>
-        </li>
-        <li class="position">
-            <input autocomplete="off" class="user" placeholder="店名">
-            <input autocomplete="off" class="pwd" placeholder="地址">
-            <input autocomplete="off" class="pwd" placeholder="详细地址">
-            <input autocomplete="off" class="pwd" placeholder="行业">
-            <input autocomplete="off" class="pwd" placeholder="邮箱">
-            <div class="address">
-                <ul>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                </ul>
-                <ul>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                </ul>
-                <ul>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                    <li>山东省</li>
-                    <li>河南省</li>
-                    <li>湖南省</li>
-                </ul>
-            </div>
-        </li>
-        <li>
-            <a class="login">开始使用</a>
-        </li>
-    </ul>
-    <img src="../../img/banner.png" class="banner">
-</div>
-<script src="../../js/login.js"></script>
+    <div class="container">
+        <ul class="regt">
+            <li class="logo">
+                <span>欢迎注册悦商云</span>
+            </li>
+            <li class="position">
+                <input autocomplete="off" class="user" id="account" placeholder="请输入账号">
+                <input autocomplete="off" class="pwd" id="pwd" placeholder="请输入密码">
+                <input autocomplete="off" class="pwd" id="phonenumber" placeholder="手机号码">
+                <input autocomplete="off" class="pwd" id="verifycode" placeholder="手机验证码">
+                <a id="getVerifyCode" class="getbtn">获取</a>
+            </li>
+            <li>
+                <a class="login" id="register">注&nbsp;册</a>
+            </li>
+        </ul>
+        <ul class="complate hidden">
+            <li class="success">
+                <span>恭喜你！注册成功</span>
+                <span>请完善你的店铺信息，即刻开始收银！</span>
+            </li>
+            <li class="position">
+                <input autocomplete="off" class="user" placeholder="店名">
+                <input autocomplete="off" class="pwd" placeholder="地址">
+                <input autocomplete="off" class="pwd" placeholder="详细地址">
+                <input autocomplete="off" class="pwd" placeholder="行业">
+                <input autocomplete="off" class="pwd" placeholder="邮箱">
+                <div class="address">
+                    <ul>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                    </ul>
+                    <ul>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                    </ul>
+                    <ul>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                        <li>山东省</li>
+                        <li>河南省</li>
+                        <li>湖南省</li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a class="login">开始使用</a>
+            </li>
+        </ul>
+        <img src="../../img/banner.png" class="banner">
+    </div>
+    <script src="../../js/login.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#getVerifyCode").click(function () {
+                var phonenumber = $("#phonenumber").val();
+                getVerifyCode(phonenumber);
+            });
+
+
+
+            $(document).ready(function () {
+                $("#register").click(function () {
+                    var account = $("#account").val();
+                    var pwd = $("#pwd").val();
+                    var phonenumber = $("#phonenumber").val();
+                    var verifycode = $("#verifycode").val();
+                    userRegister(account, pwd, phonenumber, verifycode);
+                });
+            });
+        })
+        function getVerifyCode(phonenumber) {
+            $.ajax({
+                type: "get",    //请求方式
+                async: true,    //是否异步
+                url: "http://localhost:8080/verificationCode",
+                dataType: "jsonp",    //跨域json请求一定是jsonp
+                //jsonp:"callbackone",
+                //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+                data: {
+                    phone: phonenumber
+                },    //请求参数
+                beforeSend: function () {
+                    //请求前的处理
+                },
+                success: function (data) {
+                    /* if (data.user != null) {
+                        $("#queryUser").html(data.user);
+                        $("#queryPassword").html(data.password);
+                    } else {
+                        $("#queryUser").html("");
+                        $("#queryPassword").html("");
+                    } */
+
+                },
+                complete: function () {
+                    //请求完成的处理
+                },
+                error: function () {
+                    //请求出错处理
+                }
+            });
+        }
+
+        function userRegister(account, pwd, phonenumber, verifycode) {
+            $.ajax({
+                type: "POST",    //请求方式
+                async: true,    //是否异步
+                url: "http://localhost:8080//tenant",
+                //dataType: "jsonp",    //跨域json请求一定是jsonp
+                //jsonp:"callbackone",
+                //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+                data: {
+                    accountName: account,
+                    pwd: pwd,
+                    phone: phonenumber,
+                    verificationCode: verifycode
+
+                },    //请求参数
+                beforeSend: function () {
+                    //请求前的处理
+                },
+                success: function (data) {
+                    /* if (data.user != null) {
+                        $("#queryUser").html(data.user);
+                        $("#queryPassword").html(data.password);
+                    } else {
+                        $("#queryUser").html("");
+                        $("#queryPassword").html("");
+                    } */
+
+                },
+                complete: function () {
+                    //请求完成的处理
+                    $(".regt").addClass("hidden");
+                    $(".complate").removeClass("hidden");
+                },
+                error: function () {
+                    //请求出错处理
+                    console.log("注册失败");
+                }
+            });
+        }
+    </script>
 </body>
+
 </html>

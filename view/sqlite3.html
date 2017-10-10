@@ -7,7 +7,8 @@
 	<script>
 		if (typeof module === 'object') { window.module = module; module = undefined; }
 	</script>
-	<script src="js/jquery-3.2.1.js"></script>
+	<script src="../../js/jquery-3.2.1.js"></script>
+	<script src="../../js/jquery.jsonp.js"></script>
 	<script>
 		if (window.module) module = window.module;
 	</script>
@@ -56,9 +57,9 @@
 
 		function saveUserByRemote(id, user, password) {
 			$.ajax({
-				type: "get",    //请求方式
+				type: "post",    //请求方式
 				async: true,    //是否异步
-				url: "http://192.168.112.43:8081/user/saveUser",
+				url: "http://localhost:8080/user/saveUser",
 				dataType: "jsonp",    //跨域json请求一定是jsonp
 				//jsonp:"callbackone",
 				//jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串

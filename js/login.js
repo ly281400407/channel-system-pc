@@ -16,12 +16,13 @@ $(".radius").click(function () {
         start = 1;
     }
 });
-$("#register").click(function(){
-    $(".regt").addClass("hidden");
-    $(".complate").removeClass("hidden");
-});
+// $("#register").click(function(){
+//     var account = $("#account").val();
+//     var pwd = $("#pwd").val();
+//     var phonenumber = $("#phonenumber").val();
+//     var verifycode = $("#verifycode").val();
+//     userRegister(account, pwd, phonenumber, verifycode);
+// });
 $(".regis").click(function(){
     location.href="register.html"
 });
-
-

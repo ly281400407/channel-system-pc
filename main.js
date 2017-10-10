@@ -26,10 +26,10 @@ app.on('window-all-closed', function () {
 app.on('ready', function () {
   // 创建浏览器窗口。
   mainWindow = new BrowserWindow({
-/*     width: 725,
-    height: 510, */
+    width: 1500,
+    height: 1500, 
     frame: false,
-    resizable: false,
+    resizable: true,
     usesContentSize: true,
     icon: __dirname + '/img/logo.png'
   });
