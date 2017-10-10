@@ -44,7 +44,6 @@ td {
 body {
   font-family: MicrosoftYaHei,Arial;
   font-size: 14px;
-  padding: 100px;
 }
 ol,
 ul {
@@ -207,7 +206,9 @@ a {
 .complate .user,
 .regt .user,
 .complate .pwd,
-.regt .pwd {
+.regt .pwd,
+.complate input,
+.regt input {
   width: 360px;
   border: transparent;
   border-bottom: 1px solid #d8d8d8;
@@ -298,22 +299,65 @@ a {
   color: #fff;
   border: none;
 }
-.address {
+.adr,
+.industry {
+  background: url("../../img/arrowdownn.png") no-repeat 342px 24px;
+}
+.address,
+.indu {
   border: 1px solid #b5b5b5;
   width: 360px;
-  height: 130px;
+  height: 132px;
+  position: absolute;
+  top: 128px;
+  right: 120px;
+  background: #fff;
 }
-.address ul {
+.address ul,
+.indu ul {
   float: left;
-  width: 33.33333333%;
-  height: 130px;
-  overflow: hidden;
+  width: 119.33333333px;
+  height: 128px;
+  overflow: auto;
   font-size: 16px;
   color: #666;
   line-height: 26px;
-  padding: 6px 0 0;
+  padding: 6px 0 2px;
 }
-.address ul:nth-child(2) {
+.address ul li:hover,
+.indu ul li:hover {
+  background: #ffb823;
+  cursor: pointer;
+}
+.address ul:nth-child(2),
+.indu ul:nth-child(2) {
   border-right: 1px solid #b5b5b5;
   border-left: 1px solid #b5b5b5;
+}
+.address ::-webkit-scrollbar,
+.indu ::-webkit-scrollbar {
+  width: 6px;
+}
+.address ::-webkit-scrollbar-thumb,
+.indu ::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ccc;
+}
+.indu {
+  top: 288px;
+}
+.indu ul {
+  width: 100%;
+  text-align: left;
+}
+.indu ul li {
+  padding-left: 8px;
+}
+.getbtn.active {
+  background-color: #d8d8d8;
+  color: #fff;
+  font-family: MicrosoftYaHei;
+  font-size: 22px;
+  line-height: 34px;
 }

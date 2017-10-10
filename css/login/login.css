@@ -95,6 +95,7 @@ a {
   color: #333;
   width: 722px;
   height: 512px;
+  -webkit-app-region: drag;
 }
 .container .right {
   text-align: center;
@@ -153,6 +154,7 @@ a {
 .container .cut img {
   width: 54px;
   margin-bottom: 8px;
+  -webkit-app-region: no-drag;
 }
 .account {
   text-align: center;
@@ -181,7 +183,8 @@ a {
   margin-bottom: 20px;
   height: 22px;
   padding-bottom: 4px;
-  color: #333;
+  color: #333; 
+  -webkit-app-region: no-drag;
 }
 .account .pwd {
   margin-bottom: 9px;
@@ -199,6 +202,7 @@ a {
   width: 220px;
   margin: 0 auto 35px;
   text-align: left;
+  -webkit-app-region: no-drag;
 }
 .account .pwd-controll span {
   font-size: 12px;
@@ -227,6 +231,7 @@ a {
   font-size: 18px;
   line-height: 38px;
   margin: 0 auto;
+  -webkit-app-region: no-drag;
 }
 .account .login:hover {
   background: #f49628;
@@ -234,6 +239,7 @@ a {
 .account .cut-ac {
   color: #f18506;
   margin-top: 12px;
+  -webkit-app-region: no-drag;
 }
 .account .cut-ac b {
   display: inline-block;
@@ -241,4 +247,8 @@ a {
   height: 10px;
   background: #f18506;
   margin: 0 10px;
+}
+
+.draggble{
+  -webkit-app-region: no-drag;
 }

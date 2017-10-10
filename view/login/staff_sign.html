@@ -2,14 +2,15 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>员工登录</title>
+    <title>注册</title>
     <script>
-            if (typeof module === 'object') { window.module = module; module = undefined; }
-        </script>
-        <script src="../../js/jquery-3.2.1.js"></script>
-        <script>
-            if (window.module) module = window.module;
-        </script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+    </script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <title>员工登录</title>
     <link rel="stylesheet" href="../../css/login/login.css">
 </head>
 <body>
@@ -19,7 +20,7 @@
             <img src="../../img/logo.png">
             <span>员工登录</span>
         </li>
-        <li>
+        <li class="draggble">
             <input autocomplete="off" class="user" placeholder="工号">
             <input autocomplete="off" class="pwd" placeholder="密码">
         </li>
@@ -32,6 +33,7 @@
     </ul>
     <img src="../../img/banner.png" class="banner">
 </div>
+
 <script src="../../js/login.js"></script>
 </body>
 </html>
