@@ -16,21 +16,42 @@ $(".radius").click(function () {
         start = 1;
     }
 });
-$("#register").click(function(){
-    $(".regt").addClass("hidden");
-    $(".complate").removeClass("hidden");
-});
+
+// $("#register").click(function(){
+//     $(".regt").addClass("hidden");
+//     $(".complate").removeClass("hidden");
+// });
+
 // $(".regis").click(function(){
 //     location.href="register.html"
  
 // });
-$(".getbtn").click(function(){
+
+//获取验证码
+$(".getbtn").click(function () {
+    //首先判断是否输入了手机号，如果未输入，则禁用按钮，不倒计时
+    var phonenumber = $("#phonenumber").val();
+    if (phonenumber == "" || phonenumber == null) {
+        document.getElementById("getVerifyCode").disabled = true;
+        alert("请输入手机号");
+        return false;
+    }
     $(this).addClass("active");
-    var sum=59;
-    var timer=setInterval(function(){
-        $(this).html(sum+"'");
-        sum===0?clearInterval(timer):sum--;
-    }.bind(this),1000);
+    var html=$(this).html();
+    if ( html== "获取"||html=="重新发送") {
+        var sum = 59;
+        var timer = setInterval(function () {
+            $(this).removeAttr("style");
+            $(this).html(sum + "'");
+            if (sum === 0) {
+                clearInterval(timer);
+                $(this).html("重新发送").css("fontSize", "16px");
+            } else {
+                sum--
+            }
+            ;
+        }.bind(this), 1000);
+    }
 });
 
 
@@ -57,5 +78,5 @@ $(".address").on("click","li",function(){
 
 //开始使用
 $("#startUse,#land").click(function(){
-    location.href="../../main.html"
+    //location.href="../../main.html"
 });
