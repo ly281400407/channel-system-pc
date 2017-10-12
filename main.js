@@ -4,7 +4,7 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 const fs = require('fs')
 const os = require('os')
-const ipc = electron.ipcMain
+const ipcMain = electron.ipcMain;
 const shell = electron.shell
 const Menu = electron.Menu
 
@@ -34,8 +34,19 @@ app.on('ready', function () {
     icon: __dirname + '/img/logo.png'
   });
 
+
   // 加载应用的首页html
   mainWindow.loadURL('file://' + __dirname + '/view/login/etp_sign.html');
+
+  ipcMain.on('mainWindowHide', (e, arg) => {
+    if(arg=='hide'){
+      mainWindow.hide();
+    }else{
+      mainWindow.show();
+    }
+    
+  });
+
   //Menu.setApplicationMenu(null);
   /* //当加载第三方网站时需要禁用node模块
   //在申明BrowserWindow时候加入

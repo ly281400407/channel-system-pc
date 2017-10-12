@@ -89,6 +89,7 @@ a {
   position: relative;
   top: 0;
   left: 0;
+  -webkit-app-region: no-drag;
 }
 .container {
   font-size: 22px;
@@ -97,11 +98,13 @@ a {
   width: 1202px;
   height: 782px;
   margin: 0 auto;
+  -webkit-app-region: no-drag;
 }
 .container .regt {
   text-align: center;
   float: right;
   width: 600px;
+  -webkit-app-region: no-drag;
 }
 .container .banner {
   width: 600px;
@@ -266,6 +269,7 @@ a {
   color: #fff;
   line-height: 58px;
   margin: 34px auto 0;
+  -webkit-app-region: no-drag;
 }
 .complate .login:hover,
 .regt .login:hover {
@@ -360,4 +364,41 @@ a {
   font-family: MicrosoftYaHei;
   font-size: 22px;
   line-height: 34px;
+}
+
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    background: silver;
+    border-radius: 25px;
+    box-shadow: 2px 2px 5px 0px black;
+    cursor: pointer;
+}
+
+.close:hover {
+    background: red;
+}
+.close:before {
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 10px;
+    background: white;
+    transform: rotate(45deg);
+    top: 20px;
+    left: 10px;
+}
+.close:after{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    background: white;
+    transform: rotate(-45deg);
+    top: 20px;
+    left: 10px;
 }

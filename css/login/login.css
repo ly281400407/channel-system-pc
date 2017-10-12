@@ -90,6 +90,13 @@ a {
   top: 0;
   left: 0;
 }
+/*.container {
+  border: 1px solid #ccc;
+  color: #333;
+  width: 722px;
+  height: 512px;
+  -webkit-app-region: drag;
+}*/
 .container {
   border: 1px solid #ccc;
   color: #333;
