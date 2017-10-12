@@ -27,13 +27,12 @@ app.on('ready', function () {
   // 创建浏览器窗口。
   mainWindow = new BrowserWindow({
     width: 724,
-    height: 514, 
+    height: 514,
     frame: false,
     resizable: false,
-    //usesContentSize: true,
+    usesContentSize: true,
     icon: __dirname + '/img/logo.png'
   });
-
   // 加载应用的首页html
   mainWindow.loadURL('file://' + __dirname + '/view/login/etp_sign.html');
   //Menu.setApplicationMenu(null);

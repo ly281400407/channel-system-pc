@@ -73,9 +73,57 @@
         $(document).ready(function () {
             $(".regis").click(function(){
                 window.open ('register.html','newwindow','height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no') 
-            })        
+            });
+
+            $("#land").click(function(){
+                var username = $(".user").val();
+                var pwd = $(".pwd").val();
+                tenantLogin(username,pwd);
+            });
 }
         )
+
+        function tenantLogin(username, pwd) {
+            $.ajax({
+                type: "GET",    //请求方式
+                async: true,    //是否异步
+                url: "http://localhost:8080/tenant",
+                //dataType: "jsonp",    //跨域json请求一定是jsonp
+                //jsonp:"callbackone",
+                //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+                data: {
+                    //请求参数
+                    userName: username,
+                    password: pwd
+                },    
+                beforeSend: function () {
+                    //请求前的处理
+                },
+                success: function (data) {
+                    if(data.meta.success){
+                        var Data = data.data;
+                        if(Data.dbName!=null){
+                            //跳到主页面
+                            window.location.href="main.html";
+                        }else{
+                            //跳到完善信息页面
+                            window.location.href="register.html";
+                        }
+                        
+                    }else{
+                        alert(data.meta.msg);
+                    }
+                    
+                },
+                complete: function () {
+                    // 请求完成的处理,跳到主页面
+                },
+                error: function () {
+                    //请求出错处理
+                    console.log("登录失败");
+                }
+            });
+        }
     </script>
 </body>
 

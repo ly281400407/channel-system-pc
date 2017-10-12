@@ -104,6 +104,7 @@ a {
   text-align: center;
   float: right;
   width: 600px;
+  -webkit-app-region: no-drag;
 }
 .container .banner {
   width: 600px;
