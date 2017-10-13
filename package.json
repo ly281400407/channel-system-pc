@@ -1,34 +1,46 @@
 {
-  "name": "LESSOCH",
-  "author": "LESSOCH",
-  "description": "LESSOCH",
-  "version": "1.7.6",
+  "name": "V8000",
+  "author": "超悦公司",
+  "description": "超悦V8000",
+  "version": "1.0.0",
   "main": "main.js",
+  "copyright":"Copyright © 超悦软件.com 版权所有",
   "build": {
+    "appId": "com.chaoyue.v8000",
+     "productName": "V8000",
+    "copyright": "Copyright © 超悦软件.com 版权所有",
+    "publish": [
+        {
+            "provider": "generic",
+            "url": "http://118.89.64.133:8181/channel-front"
+        }
+    ],
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "runAfterFinish": false
+      "runAfterFinish": false,
+      "allowElevation":true,
+      "installerIcon":"icon/logo.ico"
     },
-    "appId": "com.lesso.LESSOCH",
-    "copyright":"LESSO",
-    "productName":"LESSOCH",
-    "dmg":{
-      "background":"",
-      "window":{
-        "x":100,	
-        "y":100,
-        "width":1500,
-        "height":1500
+    "dmg": {
+      "background": "",
+      "window": {
+        "x": 100,
+        "y": 100,
+        "width": 1500,
+        "height": 1500
       }
     },
     "win": {
-        "icon": "",
-        "target": "nsis"
+      "icon":"icon/logo.ico",
+      "target": "nsis"
     }
-    
+  },
+  "devDependencies": {
+    "electron": "^1.7.8"
   },
   "dependencies": {
+    "electron-updater": "^2.11.0",
     "sqlite3": "^3.1.13"
   }
 }

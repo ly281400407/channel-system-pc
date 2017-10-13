@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Electron Updater Example</title>
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+	<script src="js/jquery-3.2.1.js"></script>
+<script>if (window.module) module = window.module;</script>
+</head>
+<body>
+
+
+<!-- <button id="checkUpdateBtn">检查更新</button> -->
+当前软件版本号为: <span id="version"></span><br/>
+新版本软件版本号为: <span id="version1"></span>
+  <div id="messages"></div>
+<script>
+
+$(document).ready(function(){ 
+
+	const {ipcRenderer} = require('electron');
+	ipcRenderer.on('message', function(event, text) {
+	  var container = document.getElementById('messages');
+	  var message = document.createElement('div');
+	  message.innerHTML = text;
+	  $("#messages").html(message);
+	})
+
+	ipcRenderer.on('currentVersion', function(event, text) {
+	  $("#version").html("v"+text);
+	})
+	ipcRenderer.on('updateVersion', function(event, text) {
+	  $("#version1").html("v"+text);
+	})
+
+	// $("#checkUpdateBtn").click(function(){ 
+	// 	ipcRenderer.send('checkforupdate', '');
+	// });
+}); 
+	
+
+
+// Listen for messages
+
+</script>
+</body>
+</html>
