@@ -76,8 +76,8 @@ $(".address").on("click","li",function(){
     $(this).parent().hasClass("area")&&$(".address").addClass("hidden");
 });
 
-//var baseUrl="http://139.199.62.80:8181/channel-system";
-var baseUrl="http://localhost:8081/";
+var baseUrl="http://139.199.62.80:8181/channel-system";
+//var baseUrl="http://localhost:8081/";
 //开始使用
 // $("#startUse,#land").click(function(){
 //     location.href="../../main.html"
