@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script>
+        if (typeof module === 'object') { window.module = module; module = undefined; }
+   </script>
+   <script src="../../js/jquery-3.2.1.js"></script>
+   <script>
+        if (window.module) module = window.module;
+  </script>
   <title>Electron Updater Example</title>
-  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-	<script src="js/jquery-3.2.1.js"></script>
-<script>if (window.module) module = window.module;</script>
+ 
 </head>
 <body>
 

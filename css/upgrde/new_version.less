@@ -1,0 +1,133 @@
+@import "../public/public";
+@import "../main/main_variable";
+
+@check-container-width: 400px;
+@check-container-radius: 6px;
+
+.container {
+  padding-bottom: 30px;
+  margin: 50px auto;
+  width: @check-container-width;
+  border-radius: @check-container-radius;
+  background: @background-white;
+  .box-shadow;
+  a {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("../../img/upgrade/upgrade-close.png") no-repeat 0 0;
+    margin-right: -10px;
+    margin-top: 10px;
+
+  }
+  li {
+    width: 360px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .update {
+    padding: 0 10px;
+    text-align: left;
+    font-size: @font-size-base;
+    margin-bottom: 10px;
+  }
+
+  .item {
+    border: @border-base #e6e6e6;
+    color: @text-six-color;
+    font-size: @font-size-small;
+    line-height: 22px;
+    ul {
+      height: 91px;
+      overflow: auto;
+      padding: 10px;
+      .custom-scrollbar;
+      li {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  }
+
+  .btn {
+    background: @background-yellow;
+    border-radius: 6px;
+    line-height: 58px;
+    font-size: 20px;
+    margin: 26px auto 0;
+    cursor: pointer;
+    &:hover {
+      background: darken(@background-yellow, 10%);
+      color: #fff;
+    }
+  }
+
+  .header {
+    h2 {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: normal;
+    }
+    span {
+      display: inline-block;
+      width: 80px;
+      border-radius: 4px;
+      line-height: 26px;
+      border: @border-base #e6e6e6;
+      margin-top: 10px;
+      color: @text-six-color;
+      font-size: @font-size-base;
+    }
+  }
+
+  img {
+    margin: 34px 0;
+  }
+
+  .pro {
+    margin-left: 3*16+0px;
+    margin-top: 97px;
+    .percentage {
+      width: 50px;
+      line-height: 30px;
+      background: @background-yellow;
+      border-radius: 6px;
+      text-align: center;
+      font-size: @font-size-large;
+      padding-left: 4px;
+    }
+    span {
+      width: 0;
+      display: block;
+      border: solid 10px transparent;
+      border-top-color: @background-yellow;
+      margin-left: 14px;
+    }
+  }
+
+  .progress {
+    height: 20px;
+    border-radius: 100px;
+    background: #e6e6e6;
+    margin: 0 auto 20px;
+    span {
+      border-radius: 100px;
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: @background-yellow;
+    }
+  }
+}
+
+.txt{
+  text-align: left !important;
+  padding-left: 80px;
+  &:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    animation: ellipsis 2s infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+  }
+}
