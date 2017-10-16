@@ -4,23 +4,23 @@
   "description": "超悦V8000",
   "version": "1.0.0",
   "main": "main.js",
-  "copyright":"Copyright © 超悦软件.com 版权所有",
+  "copyright": "Copyright © 超悦软件.com 版权所有",
   "build": {
     "appId": "com.chaoyue.v8000",
-     "productName": "V8000",
+    "productName": "V8000",
     "copyright": "Copyright © 超悦软件.com 版权所有",
     "publish": [
-        {
-            "provider": "generic",
-            "url": "http://118.89.64.133:8181/channel-front/64"
-        }
+      {
+        "provider": "generic",
+        "url": "http://118.89.64.133:8181/channel-front"
+      }
     ],
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "runAfterFinish": false,
-      "allowElevation":true,
-      "installerIcon":"icon/logo.ico"
+      "allowElevation": true,
+      "installerIcon": "icon/logo.ico"
     },
     "dmg": {
       "background": "",
@@ -32,7 +32,7 @@
       }
     },
     "win": {
-      "icon":"icon/logo.ico",
+      "icon": "icon/logo.ico",
       "target": "nsis"
     }
   },
