@@ -63,7 +63,7 @@ function alertSelectUpdate(version){
       updateNotAva:'现在使用的就是最新版本，不用更新',
     };
     autoUpdater.autoDownload=false;
-    autoUpdater.setFeedURL('http://118.89.64.133:8181/channel-front');
+    autoUpdater.setFeedURL('http://118.89.64.133:8181/channel-front/64');
     //添加更新监听
     autoUpdater.on('error', function(error){
         sendStatusToWindow(message.error)
@@ -121,6 +121,7 @@ app.on('ready', function () {
  
   // 加载应用的首页html
   mainWindow.loadURL('file://' + __dirname + '/view/login/etp_sign.html');
+  
   //检查是否有更新
   autoUpdater.checkForUpdates();
 
