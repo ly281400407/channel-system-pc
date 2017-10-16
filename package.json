@@ -12,7 +12,7 @@
     "publish": [
         {
             "provider": "generic",
-            "url": "http://118.89.64.133:8181/channel-front"
+            "url": "http://118.89.64.133:8181/channel-front/64"
         }
     ],
     "nsis": {
