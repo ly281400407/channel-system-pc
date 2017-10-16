@@ -35,7 +35,7 @@
         <ul class="complate hidden">
             <div class="close" onclick="window.close()"></div>
             <li class="success">
-                <span>恭喜你！注册成功</span>
+                <span class="hint">恭喜你！注册成功</span>
                 <span>请完善你的店铺信息，即刻开始收银！</span>
             </li>
             <li class="position">
@@ -136,6 +136,7 @@
             var tenantAcc = null;
             var perfectInfo = getValue("perfectInfo");
             if (perfectInfo != null && perfectInfo == "true") {
+                $(".hint").html("");
                 $(".regt").addClass("hidden");
                 $(".complate").removeClass("hidden");
             }
@@ -191,7 +192,11 @@
             });
 
             $("#startUse").click(function () {
-                var tenantAccount = tenantAcc;
+                var tenantAccount = getValue("tenantAccount");
+               // alert(tenantAccount);
+                if(tenantAccount==""){
+                    tenantAccount = tenantAcc;
+                }
                 var companyName = $("#user").val();
                 var province = $("#province").val();
                 //var city = $("#city").val();
@@ -233,7 +238,7 @@
             $.ajax({
                 type: "PUT",    //请求方式
                 async: true,    //是否异步
-                url: "http://localhost:8080//tenant",
+                url: baseUrl + "/tenant",
                 // dataType: "jsonp",    //跨域json请求一定是jsonp
                 //jsonp:"callbackone",
                 //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串

@@ -259,3 +259,39 @@ a {
 .draggble{
   -webkit-app-region: no-drag;
 }
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 50px;
+  height: 50px;
+  background: silver;
+  border-radius: 25px;
+  box-shadow: 2px 2px 5px 0px black;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: red;
+}
+.close:before {
+  position: absolute;
+  content: '';
+  width: 30px;
+  height: 10px;
+  background: white;
+  transform: rotate(45deg);
+  top: 20px;
+  left: 10px;
+}
+.close:after{
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  background: white;
+  transform: rotate(-45deg);
+  top: 20px;
+  left: 10px;
+}

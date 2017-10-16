@@ -139,6 +139,12 @@ app.on('ready', function () {
     autoUpdater.checkForUpdates();
   });
 
+  ipcMain.on('quitApp', function (event, arg) {
+    if (arg=='quit'){
+    app.quit();
+    }
+  })
+
   globalShortcut.register('CommandOrControl+Q', function () {
     app.quit();
   });
