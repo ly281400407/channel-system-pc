@@ -68,6 +68,7 @@ $(".industry").click(
 );
 $(".indu").on("click","li",function(){
    $(".industry").val($(this).html());
+   $(".industry").attr("val",$(this).attr("value"));
     $(".indu").addClass("hidden");
 });
 $(".address").on("click","li",function(){
