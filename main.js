@@ -187,7 +187,7 @@ app.on('ready', function () {
 		childWindow.once('ready-to-show', () => {
 		  childWindow.show();
 		  childWindow.webContents.send('updateVersion',autoUpdater.versionInfo.version); 
-	});
+	   });
 
   });
   ipcMain.on('installUpdate', (e, arg) => {

@@ -3,9 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>升级</title>
-    <link rel="stylesheet" href="../css/upgrde/new_version.css">
-    <script src="../js/upgrade.js"></script>
-    <script src="../res/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="../../css/upgrde/new_version.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>if (window.module) module = window.module;</script>
+   
 </head>
 <body>
 <ul class="container clear">
@@ -17,6 +19,9 @@
     <li>
         <img src="../../img/upgrade/upgrade.png">
     </li>
+    <li>
+        <span id="fileName"></span>
+    </li>
     <li class="pro">
         <div class="percentage">0%</div>
         <span class="arrow"></span>
@@ -26,5 +31,35 @@
     </li>
     <li class="txt">新版本正在努力安装中，请稍等</li>
 </ul>
+<script>
+$(document).ready(function(){ 
+    $('.pro').css("marginLeft","2px");
+
+    const {ipcRenderer} = require('electron');
+    ipcRenderer.on('updateVersion', function(event, text) {
+      $("#version").html("V"+text);
+    })
+    ipcRenderer.on('updateVersion', function(event, text) {
+      $("#version").html("V"+text);
+    })
+    ipcRenderer.on('rateOfProgress', function(event, data) {
+        var prog=$(".progrs");
+        var percge=$(".percentage");
+        var li=$('.pro');
+        var margin=2;
+        // margin++;
+        li.css("marginLeft",data>5?data*3.6-16:margin);
+        percge.html(data+"%");
+        prog.css("width",data+"%")
+    })
+    ipcRenderer.on('downloadfileName', function(event, data) {
+        $("#fileName").html(data);
+    })
+    $("#closeBtn").click(function(){
+        ipcRenderer.send("mainWindowHide","show");
+        window.close();
+    });
+}); 
+</script>
 </body>
 </html>
