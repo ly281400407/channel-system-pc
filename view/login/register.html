@@ -21,6 +21,7 @@
             <li class="logo">
                 <span>欢迎注册悦商云</span>
             </li>
+            <li><span id="msg1" style="color:red;"></span></li>
             <li class="position">
                 <input id="account" autocomplete="off" length class="user" placeholder="请输入账号">
                 <input id="pwd" type="password" autocomplete="off" class="pwd" placeholder="请输入密码">
@@ -35,9 +36,10 @@
         <ul class="complate hidden">
             <div class="close" onclick="window.close()"></div>
             <li class="success">
-                <span>恭喜你！注册成功</span>
+                <span class="hint">恭喜你！注册成功</span>
                 <span>请完善你的店铺信息，即刻开始收银！</span>
             </li>
+            <li><span id="msg2" style="color:red;"></span></li>
             <li class="position">
                 <input autocomplete="off" id="user" class="user" placeholder="店名">
                 <input autocomplete="off" id="province" class="adr" placeholder="省" readonly>
@@ -131,230 +133,6 @@
     </div>
 
     <script src="../../js/login.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var tenantAcc = null;
-            var perfectInfo = getValue("perfectInfo");
-            if (perfectInfo != null && perfectInfo == "true") {
-                $(".regt").addClass("hidden");
-                $(".complate").removeClass("hidden");
-            }
-
-            $("#getVerifyCode").click(function () {
-                var phonenumber = $("#phonenumber").val();
-                //var reg = /^1[0-9]{10}$/;
-                var reg = /^1[3|4|5|7|8][0-9]{9}$/;
-                if (!reg.test($("#phonenumber").val())) {
-                    alert('请输入有效的手机号码！');
-                    return false;
-                }
-                if (phonenumber == "" || phonenumber == null) {
-                    document.getElementById("getVerifyCode").disabled = true;
-                    alert("请输入手机号");
-                    return false;
-                } else {
-                    getVerifyCode(phonenumber);
-                }
-
-            });
-
-            $("#register").click(function () {
-                var account = $("#account").val();
-                tenantAcc = $("#account").val();
-                var pwd = $("#pwd").val();
-                var phonenumber = $("#phonenumber").val();
-                var verifycode = $("#verifyCode").val();
-
-                var ok = /^[a-zA-Z][a-zA-Z0-9]*$/.test(account);
-                if(!ok) {
-                    alert('对不起，请输入以字母开头的账号'); return false;
-                }
-
-                if (account.length < 6) {
-                    alert('对不起，请输入不小于六位的账号');
-                    return false;
-                }
-                if (pwd.length < 6) {
-                    alert('对不起，您的密码不能小于六位');
-                    return false;
-                }
-                var reg = /^1[3|4|5|7|8][0-9]{9}$/;
-                if (!reg.test($("#phonenumber").val())) {
-                    alert('请输入有效的手机号码！');
-                    return false;
-                }
-                if (verifycode == "" || verifycode == null) {
-                    alert("请填写验证码");
-                    return false;
-                }
-                userRegister(account, pwd, phonenumber, verifycode);
-            });
-
-            $("#startUse").click(function () {
-                var tenantAccount = tenantAcc;
-                var companyName = $("#user").val();
-                var province = $("#province").val();
-                //var city = $("#city").val();
-                //var county = $("#county").val();
-                var city = "深圳";
-                var county = "南山";
-                var adrdetail = $("#adrDetail").val();
-                var industry = $("#industry").attr("val");
-                var email = $("#email").val();
-                if (companyName == "" || companyName == null) {
-                    alert("请输入店铺名");
-                    return false;
-                }
-                if (province == "" || province == null || city == "" || city == null || county == "" || county == null) {
-                    alert("请选择所在区域");
-                    return false;
-                }
-                if (adrdetail == "" || adrdetail == null) {
-                    alert("请填写详细地址");
-                    return false;
-                }
-                if (industry == "" || industry == null) {
-                    alert("请选择行业");
-                    return false;
-                }
-                if (email == "" || email == null) {
-                    alert("请输入邮件地址");
-                    return false;
-                }
-
-                startUse(tenantAccount, companyName, province, city, county, adrdetail, industry, email);
-
-
-            });
-
-        })
-
-        function startUse(tenantAccount, companyName, province, city, county, adrdetail, industry, email) {
-            $.ajax({
-                type: "PUT",    //请求方式
-                async: true,    //是否异步
-                url: "http://localhost:8080//tenant",
-                // dataType: "jsonp",    //跨域json请求一定是jsonp
-                //jsonp:"callbackone",
-                //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
-                data: {
-                    tenantAccount: tenantAccount,
-                    companyName: companyName,
-                    province: province,
-                    city: city,
-                    county: county,
-                    address: adrdetail,
-                    tenantType: industry,
-                    email: email
-                },    //请求参数
-                beforeSend: function () {
-                    //请求前的处理
-                },
-                success: function (data) {
-                    if (data.meta.success) {
-                        window.location.href = "main.html";
-                    }
-                    /* if (data.user != null) {
-                        $("#queryUser").html(data.user);
-                        $("#queryPassword").html(data.password);
-                    } else {
-                        $("#queryUser").html("");
-                        $("#queryPassword").html("");
-                    } */
-                },
-                complete: function () {
-                    //请求完成的处理
-                },
-                error: function () {
-                    //请求出错处理
-                }
-            });
-        }
-        function getVerifyCode(phonenumber) {
-            $.ajax({
-                type: "get",    //请求方式
-                async: true,    //是否异步
-                url: baseUrl + "/verificationCode",
-                // dataType: "jsonp",    //跨域json请求一定是jsonp
-                //jsonp:"callbackone",
-                //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
-                data: {
-                    phone: phonenumber
-                },    //请求参数
-                beforeSend: function () {
-                    //请求前的处理
-                },
-                success: function (data) {
-                    /* if (data.user != null) {
-                        $("#queryUser").html(data.user);
-                        $("#queryPassword").html(data.password);
-                    } else {
-                        $("#queryUser").html("");
-                        $("#queryPassword").html("");
-                    } */
-                },
-                complete: function () {
-                    //请求完成的处理
-                },
-                error: function () {
-                    //请求出错处理
-                }
-            });
-        }
-        function userRegister(account, pwd, phonenumber, verifycode) {
-            $.ajax({
-                type: "POST",    //请求方式
-                async: true,    //是否异步
-                url: baseUrl + "/tenant",
-                //dataType: "jsonp",    //跨域json请求一定是jsonp
-                //jsonp:"callbackone",
-                //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
-                data: {
-                    accountName: account,
-                    pwd: pwd,
-                    phone: phonenumber,
-                    verificationCode: verifycode
-                },    //请求参数
-                beforeSend: function () {
-                    //请求前的处理
-                },
-                success: function (data) {
-                    if (data.meta.success) {
-                        //请求完成的处理
-                        $(".regt").addClass("hidden");
-                        $(".complate").removeClass("hidden");
-                        console.log("注册成功");
-                    } else {
-                        alert(data.meta.message);
-                    }
-                },
-                complete: function () {
-                    //请求完成的处理
-
-                },
-                error: function () {
-                    //请求出错处理
-                    console.log("注册失败");
-                }
-            });
-        }
-
-        function getValue(name) {
-            var str = window.location.search;
-            if (str.indexOf(name) != -1) {
-                var pos_start = str.indexOf(name) + name.length + 1;
-                var pos_end = str.indexOf("&", pos_start);
-                if (pos_end == -1) {
-                    return str.substring(pos_start);
-                } else {
-                    return str.substring(pos_start, pos_end)
-                }
-            }
-            else {
-                return "";
-            }
-        }
-    </script>
+    <script src="../../js/register.js"></script>
 </body>
-
 </html>

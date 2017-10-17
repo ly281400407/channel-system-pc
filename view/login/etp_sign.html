@@ -18,6 +18,7 @@
 <body>
     <div class="container">
         <ul class="right">
+            <div class="close" onclick="window.close()"></div>
             <li class="we_login">微信登录</li>
             <li>
                 <img src="../../img/QR_code.png">
@@ -42,6 +43,7 @@
             </li>
         </ul>
         <ul class="account  hidden">
+            <div class="close" onclick="window.close()"></div>
             <li class="logo">
                 <img src="../../img/logo.png">
                 <span>企业登录</span>
@@ -72,46 +74,46 @@
     <script src="../../js/login.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".regis").click(function(){
-                window.open ('register.html','newwindow','height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no') 
+            $(".regis").click(function () {
+                window.open('register.html', 'newwindow', 'height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no')
             });
 
-            $("#land").click(function(){
+            $("#land").click(function () {
                 var username = $(".user").val();
                 var pwd = $(".pwd").val();
-                if(username == ""){
+                if (username == "") {
                     $("#msg").html("账号不能为空");
                     return;
                 }
-                if(pwd == ""){
+                if (pwd == "") {
                     $("#msg").html("密码不能为空");
                     return;
                 }
-                tenantLogin(username,pwd);
+                tenantLogin(username, pwd);
             });
 
-            $(".user").focus(function(){
+            $(".user").focus(function () {
                 $("#msg").html("");
             });
 
-            $(".pwd").focus(function(){
+            $(".pwd").focus(function () {
                 $("#msg").html("");
             });
 
-}
+        }
         )
 
 
-    const {ipcRenderer} = require('electron')
-       function mainWindowHide() {
-        ipcRenderer.send('mainWindowHide', 'hide');
-      };
+        const { ipcRenderer } = require('electron')
+        function mainWindowHide() {
+            ipcRenderer.send('mainWindowHide', 'hide');
+        };
 
         function tenantLogin(username, pwd) {
             $.ajax({
                 type: "GET",    //请求方式
                 async: true,    //是否异步
-                url: baseUrl+"/tenant",
+                url: baseUrl + "/tenant",
                 //dataType: "jsonp",    //跨域json请求一定是jsonp
                 //jsonp:"callbackone",
                 //jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
@@ -119,29 +121,30 @@
                     //请求参数
                     userName: username,
                     password: pwd
-                },    
+                },
                 beforeSend: function () {
                     //请求前的处理
                 },
                 success: function (data) {
-                    if(data.meta.success){
+                    if (data.meta.success) {
                         var Data = data.data;
-                        if(Data.dbName!=null){
+                        if (Data.dbName != null) {
                             //跳到主页面
-                            window.location.href="main.html";
+                            window.location.href = "main.html";
                             // window.open ('main.html','newwindow','height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no') 
-                        }else{
+                        } else {
                             //跳到完善信息页面
                             //window.location.href="register.html?perfectInfo=true";
-                             mainWindowHide();
-                            window.open ('register.html?perfectInfo=true','newwindow','height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no') 
+                            mainWindowHide();
+                            //alert(Data.tenant.tenantAccount);
+                            window.open('register.html?perfectInfo=true&tenantAccount=' + Data.tenant.tenantAccount, 'newwindow', 'height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no')
                         }
-                        
-                    }else{
+
+                    } else {
                         // alert(data.meta.msg);
                         $("#msg").html(data.meta.message);
                     }
-                    
+
                 },
                 complete: function () {
                     // 请求完成的处理,跳到主页面

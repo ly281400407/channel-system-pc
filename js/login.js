@@ -22,10 +22,13 @@ $(".radius").click(function () {
 // });
 // $(".regis").click(function(){
 //     location.href="register.html"
- 
+
 // });
 //获取验证码
 $(".getbtn").click(function () {
+    setTimeout(function () {
+        document.getElementById("getVerifyCode").disabled = true;
+    }, 60000);
     //首先判断是否输入了手机号，如果未输入，则禁用按钮，不倒计时
     var phonenumber = $("#phonenumber").val();
     var reg = /^1[3|4|5|7|8][0-9]{9}$/;
@@ -57,29 +60,24 @@ $(".getbtn").click(function () {
 
 
 //完善店铺信息页面地址和行业选择事件
-$(".adr").click(function(){
+$(".adr").click(function () {
     $(".address").removeClass("hidden");
     $(this).val("");
 });
 $(".industry").click(
-    function(){
+    function () {
         $(".indu").removeClass("hidden");
     }
 );
-$(".indu").on("click","li",function(){
-   $(".industry").val($(this).html());
-   $(".industry").attr("val",$(this).attr("value"));
+$(".indu").on("click", "li", function () {
+    $(".industry").val($(this).html());
+    $(".industry").attr("val", $(this).attr("value"));
     $(".indu").addClass("hidden");
 });
-$(".address").on("click","li",function(){
-    var adr=$(".adr");
-    adr.val(adr.val()+$(this).html());
-    $(this).parent().hasClass("area")&&$(".address").addClass("hidden");
+$(".address").on("click", "li", function () {
+    var adr = $(".adr");
+    adr.val(adr.val() + $(this).html());
+    $(this).parent().hasClass("area") && $(".address").addClass("hidden");
 });
 
-var baseUrl="http://139.199.62.80:8181/channel-system";
-//var baseUrl="http://localhost:8081/";
-//开始使用
-// $("#startUse,#land").click(function(){
-//     location.href="../../main.html"
-// });
+var baseUrl = "http://139.199.62.80:8181/channel-system";
