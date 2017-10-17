@@ -43,7 +43,7 @@
             </li>
         </ul>
         <ul class="account  hidden">
-            <div class="close" id="closeWindow"></div>
+            <div class="close" onclick="window.close()"></div>
             <li class="logo">
                 <img src="../../img/logo.png">
                 <span>企业登录</span>
@@ -137,7 +137,7 @@
                             //window.location.href="register.html?perfectInfo=true";
                             mainWindowHide();
                             //alert(Data.tenant.tenantAccount);
-                            window.open('register.html?perfectInfo=true&tenantAccount='+Data.tenant.tenantAccount, 'newwindow', 'height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no')
+                            window.open('register.html?perfectInfo=true&tenantAccount=' + Data.tenant.tenantAccount, 'newwindow', 'height=786,width=1208,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no')
                         }
 
                     } else {
