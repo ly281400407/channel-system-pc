@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新版本</title>
+    <link rel="stylesheet" href="../../css/upgrde/new_version.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>if (window.module) module = window.module;</script>
+</head>
+<body>
+    <ul class="container clear">
+        <li class="header clear">
+            <a class="close float-right"  id="closeBtn"></a>
+            <h2>发现新版本</h2>
+            <span id="version">V0.0.0</span>
+        </li>
+        <li>
+            <img src="../../img/upgrade/upgrade.png">
+        </li>
+        <li class="update">更新内容</li>
+        <li class="item">
+            <ul id="releaseNotes">
+                <li>1.修复一些不合理的交互问题</li>
+                <li>2.修复部分bug</li>
+                <li>3.优化员工档案详情页面</li>
+            </ul>
+        </li>
+        <li class="btn" id="updateBtn">立即更新</li>
+    </ul>
+
+<script>
+$(document).ready(function(){ 
+    const {ipcRenderer} = require('electron');
+    ipcRenderer.on('updateVersion', function(event, text) {
+      $("#version").html("V"+text);
+    })
+    ipcRenderer.on('updateReleaseNotes', function(event, text) {
+      $("#releaseNotes").html("<li>"+text+"</li>");
+    })
+    $("#updateBtn").click(function(){
+        ipcRenderer.send("downloadUpdate");
+    });
+
+    $("#closeBtn").click(function(){
+        ipcRenderer.send("mainWindowHide","show");
+        window.close();
+    });
+}); 
+</script>
+
+</body>
+</html>

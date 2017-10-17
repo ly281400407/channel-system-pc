@@ -16,6 +16,8 @@ const globalShortcut = electron.globalShortcut;
 // 保持一个对于 window 对象的全局引用，不然，当 JavaScript 被 GC，
 // window 会被自动地关闭
 var mainWindow = null;
+let childWindow = null;
+let checkFlag=false;
 //弹出是否更新提示
 function alertSelectUpdate(version){
     let currentVersion = app.getVersion();
@@ -33,8 +35,7 @@ function alertSelectUpdate(version){
          autoUpdater.downloadUpdate();
       }
       setTimeout(function() {
-        mainWindow.show(); 
-        
+        mainWindow.show();
         mainWindow.webContents.send('currentVersion', currentVersion); 
         mainWindow.webContents.send('updateVersion', autoUpdater.versionInfo.version); 
       }, 2000);
@@ -63,33 +64,67 @@ function alertSelectUpdate(version){
       updateNotAva:'现在使用的就是最新版本，不用更新',
     };
     autoUpdater.autoDownload=false;
-    autoUpdater.setFeedURL('http://118.89.64.133:8181/channel-front/64');
+    autoUpdater.setFeedURL('http://118.89.64.133:8181/channel-front');
     //添加更新监听
     autoUpdater.on('error', function(error){
         sendStatusToWindow(message.error)
     });
     autoUpdater.on('checking-for-update', function() {
-        sendStatusToWindow(message.checking)
+        mainWindow.hide();
+        childWindow = new BrowserWindow({parent: mainWindow, transparent: true, width: 400,height: 220, center:true,frame: false,resizable: false,icon: __dirname + '/icon/logo.ico', show: false});
+        childWindow.loadURL('file://' + __dirname + '/view/upgrade/check.html')
+        childWindow.once('ready-to-show', () => {
+          childWindow.show();
+          childWindow.webContents.send('currentVersion',app.getVersion()); 
+        });
+        //alert(1);
     });
     autoUpdater.on('update-available', function(info) {
+    	childWindow.destroy();
         mainWindow.hide();
         console.log(autoUpdater.versionInfo);
-        alertSelectUpdate(autoUpdater.versionInfo.version);
+        childWindow = new BrowserWindow({parent: mainWindow, transparent: true, width: 400,height: 600, center:true,frame: false,resizable: false,icon: __dirname + '/icon/logo.ico', show: false});
+    		childWindow.loadURL('file://' + __dirname + '/view/upgrade/new_version.html')
+    		childWindow.once('ready-to-show', () => {
+    			  childWindow.show();
+    			  childWindow.webContents.send('updateReleaseNotes',autoUpdater.versionInfo.releaseNotes);
+    			  childWindow.webContents.send('updateVersion',autoUpdater.versionInfo.version);
+    		});
+        
     });
     autoUpdater.on('update-not-available', function(info) {
-        sendStatusToWindow(message.updateNotAva)
+    	childWindow.destroy();
+    	mainWindow.show();
+    	if(checkFlag){
+			mainWindow.hide();
+         	childWindow = new BrowserWindow({parent: mainWindow, transparent: true, width: 700,height: 700, center:true,frame: false,resizable: false,icon: __dirname + '/icon/logo.ico', show: false});
+			childWindow.loadURL('file://' + __dirname + '/view/upgrade/current.html')
+			childWindow.once('ready-to-show', () => {
+			  childWindow.show();
+			  childWindow.webContents.send('currentVersion',app.getVersion());
+			  // setTimeout(function() {
+			  // 	childWindow.destroy();
+			  // 	mainWindow.show(); 
+			  // }, 1000);
+			});
+    	}
     });
     
     // 更新下载进度事件
     autoUpdater.on('download-progress', function(progressObj) {
-       let log_message = "当前下载速度为: " + (progressObj.bytesPerSecond/1024).toFixed(2)+"KB/S";
-       log_message = log_message + ' - 下载进度为 ' + progressObj.percent.toFixed(2) + '%';
-       log_message = log_message + ' (' + (progressObj.transferred/1024/1024).toFixed(2) + "M/" + (progressObj.total/1024/1024).toFixed(2) + 'M)';
-       sendStatusToWindow(log_message);
+    	if(!childWindow.isDestroyed()){
+ 		   childWindow.webContents.send('rateOfProgress',parseInt(progressObj.transferred/progressObj.total*100)); 
+    	}
+         
     })
     autoUpdater.on('update-downloaded',  function (event, releaseNotes, releaseName, releaseDate, updateUrl, quitAndUpdate) {
-       showMessageBox("版本更新","安装包下载完毕，请点击确认进行安装");
-       setTimeout(function() {autoUpdater.quitAndInstall(); }, 3000);
+      childWindow.destroy();
+	    childWindow = new BrowserWindow({parent: mainWindow, transparent: true, width: 400,height: 610, center:true,frame: false,resizable: false,icon: __dirname + '/icon/logo.ico', show: false});
+			childWindow.loadURL('file://' + __dirname + '/view/upgrade/success.html')
+			childWindow.once('ready-to-show', () => {
+			  childWindow.show();
+			  childWindow.webContents.send('currentVersion',app.getVersion()); 
+		});
     });    
 
 // 当所有窗口被关闭了，退出。
@@ -121,10 +156,14 @@ app.on('ready', function () {
  
   // 加载应用的首页html
   mainWindow.loadURL('file://' + __dirname + '/view/login/etp_sign.html');
+
+
+      
+
   
   //检查是否有更新
   autoUpdater.checkForUpdates();
-
+  checkFlag=false;
   
   //监听window隐藏显示事件
    ipcMain.on('mainWindowHide', (e, arg) => {
@@ -137,7 +176,22 @@ app.on('ready', function () {
 
   //监听更新事件
    ipcMain.on('checkforupdate', (e, arg) => {
+   	checkFlag=true;
     autoUpdater.checkForUpdates();
+  });
+  ipcMain.on('downloadUpdate', (e, arg) => {
+    autoUpdater.downloadUpdate();
+    childWindow.destroy();
+    childWindow = new BrowserWindow({parent: mainWindow, transparent: true, width: 400,height: 600, center:true,frame: false,resizable: false,icon: __dirname + '/icon/logo.ico', show: false});
+		childWindow.loadURL('file://' + __dirname + '/view/upgrade/update.html')
+		childWindow.once('ready-to-show', () => {
+		  childWindow.show();
+		  childWindow.webContents.send('updateVersion',autoUpdater.versionInfo.version); 
+	});
+
+  });
+  ipcMain.on('installUpdate', (e, arg) => {
+   autoUpdater.quitAndInstall();
   });
 
   ipcMain.on('quitApp', function (event, arg) {

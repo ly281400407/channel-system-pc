@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>版本检测</title>
+    <link rel="stylesheet" href="../../css/upgrde/check.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>if (window.module) module = window.module;</script>
+</head>
+<body>
+<div class="container">
+    <header>
+        <a class="close float-right"  id="closeBtn"></a>
+        <span class="title">悦商云平台－升级</span>
+    </header>
+    <section>
+        <div class="progress"></div>
+        <h4 class="prompt">正在为您检测新版本，请稍等</h4>
+    </section>
+    <footer>
+        <span class="version">当前版本：V<span id="version">0.0.0</span> </span>
+    </footer>
+</div>
+
+<script>
+
+$(document).ready(function(){ 
+    const {ipcRenderer} = require('electron');
+    ipcRenderer.on('currentVersion', function(event, text) {
+      $("#version").html(text);
+    })
+    $("#closeBtn").click(function(){
+        ipcRenderer.send("mainWindowHide","show");
+        window.close();
+    });
+
+}); 
+</script>
+</body>
+</html>

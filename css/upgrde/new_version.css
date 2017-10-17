@@ -1,0 +1,252 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  color: #333;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em,
+p,
+font,
+img,
+small,
+strong,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+label,
+table,
+caption,
+tbody,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+}
+body {
+  font-family: MicrosoftYaHei,Arial;
+  font-size: 14px;
+}
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+:focus {
+  outline: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+strong {
+  font-weight: 600;
+}
+a {
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+.clear:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.clear:before {
+  content: "";
+  display: table;
+}
+.hidden {
+  display: none;
+}
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.radius {
+  border-radius: 50%;
+}
+.position {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.arrow-left {
+  margin-left: -5px;
+  display: inline-block;
+  border: 8px solid transparent;
+  border-right-color: #798081;
+}
+.arrow-right {
+  margin-left: -5px;
+  display: inline-block;
+  border: 8px solid transparent;
+  border-left-color: #798081;
+}
+@keyframes ellipsis {
+  from {
+    width: 2px;
+  }
+  to {
+    width: 15px;
+  }
+}
+.suc {
+  font-size: 24px;
+  margin-top: 16px;
+}
+.container {
+  padding-bottom: 30px;
+ /* margin: 50px auto;
+  width: 400px;*/
+  width: auto;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  -webkit-app-region: drag;
+}
+.btn{
+  -webkit-app-region: no-drag;
+}
+.container a {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("../../img/upgrade/upgrade-close.png") no-repeat 0 0;
+  margin-right: -10px;
+  margin-top: 10px;
+}
+.container li {
+  width: 360px;
+  margin: 0 auto;
+  text-align: center;
+}
+.container .update {
+  padding: 0 10px;
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-family: MicrosoftYaHei,Arial;
+}
+.container .item {
+  border: solid 1px #e6e6e6;
+  color: #666;
+  font-size: 12px;
+  line-height: 22px;
+}
+.container .item ul {
+  height: 91px;
+  overflow: auto;
+  padding: 10px;
+}
+.container .item ul::-webkit-scrollbar {
+  width: 6px;
+}
+.container .item ul::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #ccc;
+}
+.container .item ul li {
+  width: 100%;
+  text-align: left;
+}
+.container .btn {
+  background: #ffb822;
+  border-radius: 6px;
+  line-height: 58px;
+  font-size: 20px;
+  margin: 26px auto 0;
+  cursor: pointer;
+}
+.container .btn:hover {
+  background: #eea200;
+  color: #fff;
+}
+.container .header h2 {
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: normal;
+}
+.container .header span {
+  display: inline-block;
+  width: 80px;
+  border-radius: 4px;
+  line-height: 26px;
+  border: solid 1px #e6e6e6;
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}
+.container img {
+  margin: 34px 0;
+}
+.container .pro {
+  margin-left: 48px;
+  margin-top: 97px;
+}
+.container .pro .percentage {
+  width: 50px;
+  line-height: 30px;
+  background: #ffb822;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 16px;
+  padding-left: 4px;
+}
+.container .pro span {
+  width: 0;
+  display: block;
+  border: solid 10px transparent;
+  border-top-color: #ffb822;
+  margin-left: 14px;
+}
+.container .progress {
+  height: 20px;
+  border-radius: 100px;
+  background: #e6e6e6;
+  margin: 0 auto 20px;
+}
+.container .progress span {
+  border-radius: 100px;
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: #ffb822;
+}
+.txt {
+  text-align: left !important;
+  padding-left: 80px;
+}
+.txt:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  animation: ellipsis 2s infinite;
+  content: "\2026";
+  /* ascii code for the ellipsis character */
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>升级</title>
+    <link rel="stylesheet" href="../../css/upgrde/new_version.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>if (window.module) module = window.module;</script>
+</head>
+<body>
+<ul class="container clear">
+    <li class="header clear">
+        <a class="close float-right"></a>
+    </li>
+    <li style="margin:58px auto 0;">
+        <img src="../../img/upgrade/success.png">
+    </li>
+    <li class="suc" style="margin-top: 13px;" id="closeBtn">恭喜你，下载成功！</li>
+    <li class="btn" style="margin: 75px auto 40px;" id="installBtn">立即安装</li>
+    <script>
+    $(document).ready(function(){ 
+        const {ipcRenderer} = require('electron');
+        $("#installBtn").click(function(){
+            ipcRenderer.send('installUpdate');
+        });
+        $("#closeBtn").click(function(){
+        ipcRenderer.send("mainWindowHide","show");
+        window.close();
+        });
+    }); 
+</script>
+</ul>
+</body>
+</html>

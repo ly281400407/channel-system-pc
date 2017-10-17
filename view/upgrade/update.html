@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>升级</title>
+    <link rel="stylesheet" href="../../css/upgrde/new_version.css">
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="../../js/jquery-3.2.1.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    
+</head>
+<body style="width: 400px;height: 600px;">
+<ul class="container clear" style="width: 400px;height: 600px;">
+    <li class="header clear">
+        <a class="close float-right" id="closeBtn"></a>
+        <h2>新版本下载中！</h2>
+        <span id="version">V1.0.0</span>
+    </li>
+    <li>
+        <img src="../../img/upgrade/upgrade.png">
+    </li>
+    <li class="pro">
+        <div class="percentage">0%</div>
+        <span class="arrow"></span>
+    </li>
+    <li class="progress">
+        <span class="progrs"></span>
+    </li>
+    <li class="txt">新版本正在努力更新中，请稍等</li>
+</ul>
+<!-- <script src="../../js/upgrade.js"></script> -->
+<script>
+$(document).ready(function(){ 
+    $('.pro').css("marginLeft","2px");
+
+    const {ipcRenderer} = require('electron');
+    ipcRenderer.on('updateVersion', function(event, text) {
+      $("#version").html("V"+text);
+    })
+    ipcRenderer.on('updateVersion', function(event, text) {
+      $("#version").html("V"+text);
+    })
+    ipcRenderer.on('rateOfProgress', function(event, data) {
+        var prog=$(".progrs");
+        var percge=$(".percentage");
+        var li=$('.pro');
+        var margin=2;
+        // margin++;
+        li.css("marginLeft",data>5?data*3.6-16:margin);
+        percge.html(data+"%");
+        prog.css("width",data+"%")
+    })
+    $("#closeBtn").click(function(){
+        ipcRenderer.send("mainWindowHide","show");
+        window.close();
+    });
+}); 
+</script>
+</body>
+</html>
